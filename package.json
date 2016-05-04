@@ -1,0 +1,41 @@
+{
+  "name": "pushjet",
+  "version": "0.0.1",
+  "description": "Node.js PushJet API support",
+  "keywords": [
+    "push",
+    "pushjet",
+    "api"
+  ],
+  "homepage": "https://github.com/tsypa/pushjet#readme",
+  "bugs": {
+    "url": "https://github.com/tsypa/pushjet/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Maxim Tsyplakov",
+    "email": "<maxim.tsyplakov@gmail.com>",
+    "url": "http://flex.oganer.net"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsypa/pushjet.git"
+  },
+  "scripts": {
+    "test": "mocha test",
+    "coverage": "istanbul cover _mocha -- -u exports -R spec"
+  },
+  "dependencies": {
+    "lodash": "^4.11.2",
+    "request": "^2.72.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "chai-interface": "^2.0.3",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "node-uuid": "^1.4.7"
+  }
+}

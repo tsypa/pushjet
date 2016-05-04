@@ -1,0 +1,9 @@
+{
+  "plugins": {
+    "node" : {},
+    "requirejs": {
+      "baseURL": "./",
+      "paths": {}
+    }
+  }
+}

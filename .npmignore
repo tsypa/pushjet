@@ -35,5 +35,12 @@ node_modules
 # Editor backups
 *~
 
+# JSCS
+.jscs*
+
+
+#Tern configuration
+.tern-project
+
 # Dynamic Tern port file
 .tern-port
