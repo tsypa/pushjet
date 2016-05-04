@@ -34,6 +34,8 @@ node_modules
 
 # Editor backups
 *~
+\#*
+.\#*
 
 # Dynamic Tern port file
 .tern-port

@@ -2,21 +2,17 @@
 
 const _ = require('lodash');
 
-let wrap = (path, request) => {
+const wrap = (path, request) => {
   this[path] = request.defaults({ url: `/${path}` });
 };
 
-let $ = (path, method, args) => new Promise((resolve, reject) => {
-  try {
-    _.invoke(this, `${path}.${method}`, {
-      [method === 'get' ? 'qs' : 'form']: _.omitBy(args, _.isNil),
-    }, (error, response, body) => {
-      const e = error || body.error;
-      e ? reject(new Error(e.message)) : resolve(body);
-    });
-  } catch (error) {
-    reject(error);
-  }
+const $ = (path, method, args) => new Promise((resolve, reject) => {
+  _.invoke(this, `${path}.${method}`, {
+    [method === 'get' ? 'qs' : 'form']: _.omitBy(args, _.isNil),
+  }, (error, response, body) => {
+    const e = error || body.error;
+    e ? reject(e) : resolve(body[_.head(_.keys(body))]);
+  });
 });
 
 class PushJet {
