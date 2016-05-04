@@ -44,3 +44,6 @@ node_modules
 
 # Dynamic Tern port file
 .tern-port
+
+# Travis
+.travis.yml
