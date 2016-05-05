@@ -5,9 +5,23 @@ A Node.js module for using [PushJet API](//docs.pushjet.io).
 ```sh
 npm i pushjet
 ```
-
 ## Usage
-### A quick and dirty example.
+All methods described in [PushJet documentation](docs.pusjhet.io) are supported.
+Each method returns Promise which fulfilled with appropriate json object or rejected with an error.
+
+## API methods
+### sendMessage(secret, message, title, level, link)
+Send a message
+### Parameters
+| name    | type    | meaning                                     | example                          | required |
+|---------|---------|---------------------------------------------|----------------------------------|----------|
+| secret  | string  | the service secret token                    | d2d1820d56b862a6f5b1a69a7af730fa | X        |
+| message | string  | The notification text                       | our server is on fire!!@#!       | X        |
+| title   | string  | A custom message title                      | Big server #5                    |          |
+| level   | integer | The importance level from 1(low) to 5(high) | 3                                |          |
+| link    | string  | http://i.imgur.com/TerUkQY.gif              | An optional link                 |          |
+
+## A quick and dirty example.
 We  share service's public token between pusher and receiver.
 
 ```javascript
