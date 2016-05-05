@@ -9,8 +9,8 @@ npm i pushjet
 All methods described in [PushJet documentation](docs.pusjhet.io) are supported.
 Each method returns Promise which fulfilled with appropriate json object or rejected with an error.
 
-### API methods
-#### sendMessage(secret, message, title, level, link)
+## API
+### sendMessage(secret, message, title, level, link)
 Send a message
 #### Parameters
 | name    | type    | meaning                                     | example                          | required |
