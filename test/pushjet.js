@@ -14,7 +14,7 @@ describe('PushJet', function () {
   let service;
 
   describe('#createService()', function () {
-    it('should have interface', function () {
+    it('should be fulfilled with interface', function () {
       return pushjet.createService('mytest')
         .then(function (data) {
           service = data;
@@ -29,7 +29,7 @@ describe('PushJet', function () {
   });
 
   describe('#getServiceInfo()', function () {
-    it('should have interface', function () {
+    it('should be fulfilled with interface', function () {
       return pushjet.getServiceInfo(service.public)
         .then(function (data) {
           data.should.have.interface({
@@ -42,14 +42,15 @@ describe('PushJet', function () {
   });
 
   describe('#updateServiceinfo()', function () {
-    it('should return ok', function () {
+    it('should should be fulfilled with status object', function () {
       return pushjet.updateServiceInfo(service.secret, 'my new name')
-        .should.eventually.equal('ok');
+        .should.eventually.be.an('object')
+        .and.have.property('status');
     });
   });
 
   describe('#subscribeToService()', function () {
-    it('should have interface', function () {
+    it('should be fulfilled with interface', function () {
       return pushjet.subscribeToService(device, service.public)
         .then(function (data) {
           data.should.have.interface({
@@ -63,21 +64,22 @@ describe('PushJet', function () {
   });
 
   describe('#getSubscriptions()', function () {
-    it('should be array', function () {
+    it('should fulfilled with array', function () {
       return pushjet.getSubscriptions(device)
         .should.eventually.be.a('array');
     });
   });
 
   describe('#sendMessage()', function () {
-    it('should be ok', function () {
+    it('should should be fulfilled with status object', function () {
       return pushjet.sendMessage(service.secret, 'message', 'title', 3, 'http://kernel.org')
-        .should.eventually.equal('ok');
+        .should.eventually.be.an('object')
+        .and.have.property('status');
     });
   });
 
   describe('#fetchUnreadMessages()', function () {
-    it('should return non-empty array', function () {
+    it('should be fulfilled with non-empty array', function () {
       return pushjet.fetchUnreadMessages(device)
         .should.eventually.be.a('array')
         .and.not.to.be.empty;
@@ -85,14 +87,15 @@ describe('PushJet', function () {
   });
 
   describe('#markMessagesAsRead()', function () {
-    it('should be ok', function () {
+    it('should should be fulfilled with status object', function () {
       return pushjet.markMessagesAsRead(device)
-        .should.eventually.equal('ok');
+        .should.eventually.be.an('object')
+        .and.have.property('status');
     });
   });
 
   describe('#fetchUnreadMessages()', function () {
-    it('should return empty array of messages', function () {
+    it('should be fulfilled with empty array of messages', function () {
       return pushjet.fetchUnreadMessages(device)
         .should.eventually.be.a('array')
         .and.to.be.empty;
@@ -100,16 +103,18 @@ describe('PushJet', function () {
   });
 
   describe('#unsubscribe()', function () {
-    it('should be ok', function () {
+    it('should be fulfilled with status object', function () {
       return pushjet.unsubscribe(device, service.public)
-        .should.eventually.equal('ok');
+        .should.eventually.be.an('object')
+        .and.have.property('status');
     });
   });
 
   describe('#deleteService()', function () {
-    it('should return status ok', function () {
+    it('should be fulfilled with status object', function () {
       return pushjet.deleteService(service.secret)
-        .should.eventually.equal('ok');
+        .should.eventually.be.an('object')
+        .and.have.property('status');
     });
   });
 });

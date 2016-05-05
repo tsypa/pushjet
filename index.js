@@ -2,6 +2,13 @@
 
 const _ = require('lodash');
 
+_.mixin({
+  denote: (object) => {
+    const value = _.get(object, _.head(_.keys(object)));
+    return _.isObjectLike(value) ? value : object;
+  },
+});
+
 const wrap = (path, request) => {
   this[path] = request.defaults({ url: `/${path}` });
 };
@@ -11,10 +18,12 @@ const $ = (path, method, args) => new Promise((resolve, reject) => {
     [method === 'get' ? 'qs' : 'form']: _.omitBy(args, _.isNil),
   }, (error, response, body) => {
     const e = error || body.error;
-    e ? reject(e) : resolve(body[_.head(_.keys(body))]);
+
+    !e ? resolve(_.denote(body)) : reject(e);
   });
 });
 
+// @class  PushJet
 class PushJet {
   constructor(baseUrl) {
     // create private wrappers
@@ -23,7 +32,6 @@ class PushJet {
     _.each(['message', 'service', 'subscription', 'gcm'], (path) => {
       wrap(path, request);
     });
-
   };
 
   sendMessage(secret, message, title, level, link) {
