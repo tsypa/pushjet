@@ -183,3 +183,12 @@ pusher.createService(name, icon).then((service) => {
 ## Third-party libraries
 - [lodash](github.com/lodsah/lodash)
 - [request](github.com/request/request)
+
+[travis-image]: https://img.shields.io/travis/tsypa/pushjet.svg?style=flat-square
+[travis-url]: https://travis-ci.org/tsypa/pushjet
+[coveralls-image]: https://img.shields.io/coveralls/tsypa/pushjet.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/tsypa/pushjet
+[npm-image]: https://img.shields.io/npm/v/pushjet.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/pushjet
+[downloads-image]: http://img.shields.io/npm/dm/pushjet.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/pushjet
