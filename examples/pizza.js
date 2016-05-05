@@ -1,11 +1,11 @@
 'use strict';
 
-const PushJet = require('pushjet');
-const pusher = new PushJet('http://api.pushjet.io/');
+const PushJet = require('../index.js');
+const pusher = new PushJet('https://api.pushjet.io/');
 const name = 'pizza';
 const icon = 'https://ipfs.pics/ipfs/QmVBjUHLS4jewV1VVwDRBfB2DBjqYA993jjUBVez2God21';
 
-// subscribe to a service and receiving of push messages
+// subscribe to a service and receive messages
 const subscribe = (pusher, service) => {
   const uuid = require('node-uuid');
   const device = uuid.v4();
@@ -40,7 +40,7 @@ pusher.createService(name, icon).then((service) => {
   const pizzas = 4;
   let n = 0;
 
-  let push = () => {
+  const push = () => {
     pusher.sendMessage(service.secret, `eat pizza #${++n}`, 'yum-yum')
       .then((status) => {
         console.log('message', n, 'sent', status);
