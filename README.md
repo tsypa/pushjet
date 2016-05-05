@@ -6,8 +6,8 @@ A Node.js module for using [PushJet API](//docs.pushjet.io).
 npm i pushjet
 ```
 ## Usage
-| All methods described in [PushJet documentation](docs.pusjhet.io) are supported.
-| Each method returns Promise which fulfilled with appropriate json object or rejected with an error.
+All methods described in [PushJet documentation](docs.pusjhet.io) are supported.<br/>
+Each method returns Promise which fulfilled with appropriate json object or rejected with an error.
 
 ## API
 ### sendMessage(secret, message, title, level, link)
