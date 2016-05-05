@@ -16,11 +16,87 @@ Send a message
 | name    | type    | meaning                                     | example                          | required |
 |---------|---------|---------------------------------------------|----------------------------------|----------|
 | secret  | string  | the service secret token                    | d2d1820d56b862a6f5b1a69a7af730fa |   **X**  |
-| message | string  | The notification text                       | our server is on fire!!@#!       |     X    |
+| message | string  | The notification text                       | our server is on fire!!@#!       |   **X**  |
 | title   | string  | A custom message title                      | Big server #5                    |          |
 | level   | integer | The importance level from 1(low) to 5(high) | 3                                |          |
 | link    | string  | http://i.imgur.com/TerUkQY.gif              | An optional link                 |          |
+### fetchUnreadMessages(uuid)
+Fetch unread messages
+#### Parameters
+| name  | type   | meaning         | example                              | required |
+|-------|--------|-----------------|--------------------------------------|----------|
+| uuid  | string | The device UUID | D867AB3E-36D2-11E4-AEA8-76C9E2E253B6 |   **X**  |
+### markMessagesAsRead(uuid)
+Mark messages as read
+#### Parameters
+| name  | type   | meaning         | example                              | required |
+|-------|--------|-----------------|--------------------------------------|----------|
+| uuid  | string | The device UUID | D867AB3E-36D2-11E4-AEA8-76C9E2E253B6 |   **X**  |
+### createService(name, icon)
+Create service
+#### Parameters
+| name  | type   | meaning          | example                     | required |
+|-------|--------|------------------|-----------------------------|----------|
+| name  | string | The service name | important stuff             |   **X**  |
+| icon  | string | The service icon | http://im.gy/images/SkZ.png |          |
 
+### getServiceInfo(service, secret)
+Get service info
+#### Parameters
+| name    | type   | meaning                                    | example                                  | required |
+|---------|--------|--------------------------------------------|------------------------------------------|----------|
+| service | string | Obtain service info using the public token | 4be3-eda97a-0d7faeab05a0-89403-ad4751c49 |          |
+| secret  | string | Obtain service info using the secret       | d2d1820d56b862a6f5b1a69a7af730fa         |          |
+
+### updateServiceInfo(secret, name, icon)
+Update service info
+#### Parameters
+| name   | type   | meaning               | example                                | required |
+|--------|--------|-----------------------|----------------------------------------|----------|
+| secret | string | The service secret    | stringd2d1820d56b862a6f5b1a69a7af730fa |   **X**  |
+| name   | string | Updated service name  | Cool new name                          |          |
+| icon   | string | Updated service image | http://im.gy/images/SkZ.png            |          |
+### deleteService(secret)
+This will unsubscribe all listeners
+#### Parameters
+| name   | type   | meaning            | example                          | required |
+|--------|--------|--------------------|----------------------------------|----------|
+| secret | string | The service secret | d2d1820d56b862a6f5b1a69a7af730fa |   **X**  |
+### subscribeToService(uuid, service)
+Subscribe to a service
+#### Parameters
+| name    | type   | meaning                    | example                                  | required |
+|---------|--------|----------------------------|------------------------------------------|----------|
+| uuid    | string | The device UUID            | D867AB3E-36D2-11E4-AEA8-76C9E2E253B6     |   **X**  |
+| service | string | The service's public token | 4be3-eda97a-0d7faeab05a0-89403-ad4751c49 |   **X**  |
+### getSubscriptions(uuid)
+Get subscriptions
+#### Parameters
+| name | type   | meaning         | example                              | required |
+|------|--------|-----------------|--------------------------------------|----------|
+| uuid | string | The device UUID | D867AB3E-36D2-11E4-AEA8-76C9E2E253B6 |   **X**  |
+### unsubscribe(uuid, servie)
+Unsubscribe
+#### Parameters
+| name    | type   | meaning                    | example                                  | required |
+|---------|--------|----------------------------|------------------------------------------|----------|
+| uuid    | string | The device UUID            | D867AB3E-36D2-11E4-AEA8-76C9E2E253B6     |   **X**  |
+| service | string | The service's public token | 4be3-eda97a-0d7faeab05a0-89403-ad4751c49 |   **X**  |
+### registerDeviceForGCM(uuid, regid, pubkey)
+Registering a device for GCM<br/>
+*Only enabled when Google Cloud Messaging is enabled on the server*
+#### Parameters
+| name   | type   | meaning                                    | example                                 | required |
+|--------|--------|--------------------------------------------|-----------------------------------------|----------|
+| uuid   | string | The device UUID                            | D867AB3E-36D2-11E4-AEA8-76C9E2E253B6    |   **X**  |
+| regid  | string | The registration ID generated by GCM       | EXAMPLExV2lcV2zEKTLNYs625zfk2jh4EXAMPLE |   **X**  |
+| pubkey | string | Optional public key for message encryption |                                         |          |
+### removingGCMRegistration(uuid)
+Removing a GCM registration
+#### Parameters
+| name | type   | meaning         | example                              | required |
+|------|--------|-----------------|--------------------------------------|----------|
+| uuid | string | The device UUID | D867AB3E-36D2-11E4-AEA8-76C9E2E253B6 |   **X**  |
 ## A quick and dirty example.
 We  share service's public token between pusher and receiver.
 
