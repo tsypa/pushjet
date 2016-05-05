@@ -15,8 +15,8 @@ Send a message
 #### Parameters
 | name    | type    | meaning                                     | example                          | required |
 |---------|---------|---------------------------------------------|----------------------------------|----------|
-| secret  | string  | the service secret token                    | d2d1820d56b862a6f5b1a69a7af730fa | X        |
-| message | string  | The notification text                       | our server is on fire!!@#!       | X        |
+| secret  | string  | the service secret token                    | d2d1820d56b862a6f5b1a69a7af730fa | **  X ** |
+| message | string  | The notification text                       | our server is on fire!!@#!       |     X    |
 | title   | string  | A custom message title                      | Big server #5                    |          |
 | level   | integer | The importance level from 1(low) to 5(high) | 3                                |          |
 | link    | string  | http://i.imgur.com/TerUkQY.gif              | An optional link                 |          |
