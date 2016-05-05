@@ -183,6 +183,8 @@ pusher.createService(name, icon).then((service) => {
 ## Third-party libraries
 - [lodash](github.com/lodsah/lodash)
 - [request](github.com/request/request)
+## License
+MIT
 
 [travis-image]: https://img.shields.io/travis/tsypa/pushjet.svg?style=flat-square
 [travis-url]: https://travis-ci.org/tsypa/pushjet
