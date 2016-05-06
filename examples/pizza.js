@@ -1,6 +1,6 @@
 'use strict';
 
-const PushJet = require('../index.');
+const PushJet = require('../index');
 const pusher = new PushJet('https://api.pushjet.io/');
 const name = 'pizza';
 const icon = 'https://ipfs.pics/ipfs/QmVBjUHLS4jewV1VVwDRBfB2DBjqYA993jjUBVez2God21';
