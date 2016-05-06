@@ -183,6 +183,7 @@ pusher.createService(name, icon).then((service) => {
 ## Third-party libraries
 - [lodash](github.com/lodsah/lodash)
 - [request](github.com/request/request)
+
 ## License
 MIT
 
