@@ -9,12 +9,21 @@ _.mixin({
   },
 });
 
-const wrap = (path, request) => {
-  this[path] = request.defaults({ url: `/${path}` });
+const internal = new WeakMap();
+
+const $$ = (object) => {
+  if (!internal.has(object)) {
+    internal.set(object, {});
+  }
+  return internal.get(object);
 };
 
-const $ = (path, method, args) => new Promise((resolve, reject) => {
-  _.invoke(this, `${path}.${method}`, {
+const wrap = (pushjet, path, request) => {
+  $$(pushjet)[path] = request.defaults({ url: `/${path}` });
+};
+
+const $ = (pushjet, path, method, args) => new Promise((resolve, reject) => {
+  _.invoke($$(pushjet), `${path}.${method}`, {
     [method === 'get' ? 'qs' : 'form']: _.omitBy(args, _.isNil),
   }, (error, response, body) => {
     const e = error || body.error;
@@ -30,56 +39,56 @@ class PushJet {
     const request = require('request').defaults({ baseUrl, json: true });
 
     _.each(['message', 'service', 'subscription', 'gcm'], (path) => {
-      wrap(path, request);
+      wrap(this, path, request);
     });
   };
 
   sendMessage(secret, message, title, level, link) {
-    return $('message', 'post', { secret, message, title, level, link });
+    return $(this, 'message', 'post', { secret, message, title, level, link });
   }
 
   fetchUnreadMessages(uuid) {
-    return $('message', 'get', { uuid });
+    return $(this, 'message', 'get', { uuid });
   }
 
   markMessagesAsRead(uuid) {
-    return $('message', 'delete', { uuid });
+    return $(this, 'message', 'delete', { uuid });
   }
 
   createService(name, icon) {
-    return $('service', 'post', { name, icon });
+    return $(this, 'service', 'post', { name, icon });
   }
 
   getServiceInfo(service, secret) {
-    return $('service', 'get', { service, secret });
+    return $(this, 'service', 'get', { service, secret });
   }
 
   updateServiceInfo(secret, name, icon) {
-    return $('service', 'patch', { secret, name, icon });
+    return $(this, 'service', 'patch', { secret, name, icon });
   }
 
   deleteService(secret) {
-    return $('service', 'delete', { secret });
+    return $(this, 'service', 'delete', { secret });
   }
 
   subscribeToService(uuid, service) {
-    return $('subscription', 'post', { uuid, service });
+    return $(this, 'subscription', 'post', { uuid, service });
   }
 
   getSubscriptions(uuid) {
-    return $('subscription', 'get', { uuid });
+    return $(this, 'subscription', 'get', { uuid });
   }
 
   unsubscribe(uuid, service) {
-    return $('subscription', 'delete', { uuid, service });
+    return $(this, 'subscription', 'delete', { uuid, service });
   }
 
   registerDeviceForGCM(uuid, regid, pubkey) {
-    return $('gcm', 'post', {  uuid, regid, pubkey });
+    return $(this, 'gcm', 'post', {  uuid, regid, pubkey });
   }
 
   removingGCMRegistration(uuid) {
-    return $('gcm', 'delete', { uuid });
+    return $(this, 'gcm', 'delete', { uuid });
   }
 }
 
