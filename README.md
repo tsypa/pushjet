@@ -11,7 +11,7 @@ A Node.js module for using [PushJet API](//docs.pushjet.io).
 npm i pushjet
 ```
 ## Usage
-All methods described in [PushJet](//docs.pushjhet.io) are supported.<br/>
+All methods described in [PushJet documentation](//docs.pushjet.io) are supported.<br/>
 Each method returns Promise which fulfilled with appropriate json object or rejected with an error.
 
 ## API
